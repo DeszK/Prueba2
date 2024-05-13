@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
@@ -19,108 +19,108 @@
     <h1>Formulario Cliente</h1>
     <!--Formulario-->
     <div class="container" style="margin-top: 70px;">
-        <form>
-            <div class="form-group">
-                <label for="itNombre">Nombre:</label> 
-                <input type="text" class="campo" id="itNombre"> <br />
-                <div id="mensaje1" class="errores">Por favor, escribe tu nombre</div>
-            </div>
-            <div class="form-group">
-                <label for="itApellido">Apellido:</label>
-                <input type="text" class="campo" id="itApellido"> <br />
-                <div id="mensaje2" class="errores">Por favor, escribe tu apellido</div>
-            </div>
-            <div class="form-group">
-                <label for="itCelular">Celular:</label>
-                <input type="text" class="campo" id="itCelular"> <br />
-                <div id="mensaje3" class="errores">Por favor, ingresa tu número de celular</div>
-            </div>
-            <div class="form-group">
-                <label for="itEmail">Correo Electrónico:</label>
-                <input type="text" class="campo" id="itEmail">
-                <div id="mensaje4" class="errores">Por favor, ingresa un correo electrónico válido</div>
-            </div>
-            <div class="form-group">
-                <label for="itDireccion">Direccion:</label>
-                <input type="text" class="campo" id="itDireccion">
-                <div id="mensaje5" class="errores">Por favor, ingresa tu direccion</div>
-            </div>
+        <form id="formulario">
+            
+            <label>Nombre:</label> 
+            <input type="text" id="itNombre" class="campo"/> <br />
+            <div id="mensaje1" class="errores">Por favor, escribe tu nombre</div>
+
+
+            <label>Apellido:</label>
+            <input type="text" id="itApellido" class="campo"/> <br />
+            <div id="mensaje2" class="errores">Por favor, escribe tu apellido</div>
+
+
+            <label>Celular:</label>
+            <input type="text" id="itCelular" class="campo"/> <br />
+            <div id="mensaje3" class="errores">Por favor, ingresa tu número de celular</div>
+
+
+            <label>Correo Electrónico:</label>
+            <input type="text" id="itEmail" class="campo"/> <br />
+            <div id="mensaje4" class="errores">Por favor, ingresa un correo electrónico válido</div>
+
+
+            <label>Direccion:</label>
+            <input type="text" id="itDireccion" class="campo"/> <br />
+            <div id="mensaje5" class="errores">Por favor, ingresa tu direccion</div>
+
 
             <button type="submit" id="bEnviar" value="Enviar datos" class="btn btn-primary">Enviar</button>
         
         </form>
     </div>
 
-
     <script>
+        
         $(document).ready(function(){
-        // Ocultar los mensajes de error al cargar la página
-        $(".errores").hide();
+            // Ocultar los mensajes de error al cargar la página
+            $(".errores").hide();
 
-        $("#formulario").submit(function(event){
-            var nombre = $("#itNombre");
-            var apellido = $("#itApellido");
-            var celular = $("#itCelular");
-            var correo = $("#itEmail");
-            var direccion = $("#itDireccion");
-            var valido = true;
+            $("#formulario").submit(function(event){
+                var nombre = $("#itNombre");
+                var apellido = $("#itApellido");
+                var celular = $("#itCelular");
+                var email = $("#itEmail");
+                var direccion = $("#itDireccion");
+                var valido = true;
 
-            // Verificar si los campos están vacíos y mostrar mensajes de error
-            if(nombre.val().trim() === "") {
-                $("#mensaje1").text("Por favor, escribe tu nombre").show();
-                nombre.addClass("error-input");
-                valido = false;
-            } else {
-                $("#mensaje1").hide();
-                nombre.removeClass("error-input");
-            }
+                // Verificar si los campos están vacíos y mostrar mensajes de error
+                if(nombre.val().trim() === "") {
+                    $("#mensaje1").text("Por favor, escribe tu nombre").show();
+                    nombre.addClass("error-input");
+                    valido = false;
+                } else {
+                    $("#mensaje1").hide();
+                    nombre.removeClass("error-input");
+                }
 
-            if(apellido.val().trim() === "") {
-                $("#mensaje2").text("Por favor, escribe tu apellido").show();
-                apellido.addClass("error-input");
-                valido = false;
-            } else {
-                $("#mensaje2").hide();
-                apellido.removeClass("error-input");
-            }
+                if(apellido.val().trim() === "") {
+                    $("#mensaje2").text("Por favor, ingresa tu apellido").show();
+                    apellido.addClass("error-input");
+                    valido = false;
+                } else {
+                    $("#mensaje2").hide();
+                    apellido.removeClass("error-input");
+                }
 
-            if(celular.val().trim() === "") {
-                $("#mensaje3").text("Por favor, ingresa tu número de celular").show();
-                celular.addClass("error-input");
-                valido = false;
-            } else {
-                $("#mensaje3").hide();
-                celular.removeClass("error-input");
-            }
+                if(celular.val().trim() === "") {
+                    $("#mensaje3").text("Por favor, ingresa tu número de celular").show();
+                    celular.addClass("error-input");
+                    valido = false;
+                }else {
+                    $("#mensaje3").hide();
+                    celular.removeClass("error-input");
+                }
 
-            if(correo.val().trim() === "") {
-                $("#mensaje4").text("Por favor, ingresa un correo electrónico válido").show();
-                correo.addClass("error-input");
-                valido = false;
-            } else if (!correo.val().includes('@')) {
-                $("#mensaje4").text("Por favor, ingresa un correo electrónico válido que contenga al menos un '@'").show();
-                correo.addClass("error-input");
-                valido = false;
-            } else {
-                $("#mensaje4").hide();
-                correo.removeClass("error-input");
-            }
+                if(email.val().trim() === "") {
+                    $("#mensaje3").text("Por favor, ingresa un correo electrónico válido").show();
+                    email.addClass("error-input");
+                    valido = false;
+                } else if (!email.val().includes('@')) {
+                    $("#mensaje3").text("Por favor, ingresa un correo electrónico válido que contenga al menos un '@'").show();
+                    email.addClass("error-input");
+                    valido = false;
+                } else {
+                    $("#mensaje3").hide();
+                    email.removeClass("error-input");
+                }
 
-            if(direccion.val().trim() === "") {
-                $("#mensaje5").text("Por favor, ingresa tu direccion").show();
-                celular.addClass("error-input");
-                valido = false;
-            } else {
-                $("#mensaje5").hide();
-                celular.removeClass("error-input");
-            }
+                if(direccion.val().trim() === "") {
+                    $("#mensaje5").text("Por favor, ingresa tu ciudad").show();
+                    direccion.addClass("error-input");
+                    valido = false;
+                } else {
+                    $("#mensaje5").hide();
+                    direccion.removeClass("error-input");
+                }
 
-            // Si algún campo está vacío, detener el envío del formulario
-            if(!valido) {
-                event.preventDefault();
-            }
+                // Si algún campo está vacío, detener el envío del formulario
+                if(!valido) {
+                    event.preventDefault();
+                }
+            });
         });
-    });        
     </script>
 
 </body>
