@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzas</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<script>
+    const settings = {
+        async: true,
+        crossDomain: true,
+        url: 'https://pizzaallapala.p.rapidapi.com/productos',
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'fd0b3bbe2emsh027ad7af237662ap1c097bjsn7a3f9c7a936d',
+            'X-RapidAPI-Host': 'pizzaallapala.p.rapidapi.com'
+        }
+    };
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    
+        // Verifica si la respuesta contiene la lista de productos
+        if (response && response.productos) {
+            // Itera sobre la lista de productos
+            response.productos.forEach(function(producto) {
+                // Verifica si el ID del producto es diferente de 49, 50 y 51
+                if (producto.id !== 33 && producto.id !== 48 && producto.id !== 49 && producto.id !== 50 && producto.id !== 51 && producto.id !== 52 && producto.id !== 53 && producto.id !== 54) {
+                    // Verifica si el producto tiene una imagen
+                    if (producto.linkImagen) {
+                        // Agrega el nombre, la descripción y la imagen de cada producto al div #producto
+                        $("#producto").append(`
+                            <div style="text-align: center;">
+                                <h1>${producto.nombre}</h1>
+                                <p>${producto.descripcion}</p>
+                                <img src="${producto.linkImagen}" alt="${producto.nombre}" style="width: 200px; height: auto;">
+                            </div>
+                        `);
+                    }
+                }
+            });
+        } else {
+            // Si no se encuentra la lista de productos en la respuesta
+            $("#producto").append("<p style='text-align: center;'>No se pudieron obtener los productos.</p>");
+        }
+    });
+    </script>
+    <div id="producto" style="text-align: center;"></div>
+    
+</body>
+</html>
