@@ -5,48 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizzas</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<script>
-    const settings = {
-        async: true,
-        crossDomain: true,
-        url: 'https://pizzaallapala.p.rapidapi.com/productos',
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'fd0b3bbe2emsh027ad7af237662ap1c097bjsn7a3f9c7a936d',
-            'X-RapidAPI-Host': 'pizzaallapala.p.rapidapi.com'
-        }
-    };
-    
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    
-        // Verifica si la respuesta contiene la lista de productos
-        if (response && response.productos) {
-            // Itera sobre la lista de productos
-            response.productos.forEach(function(producto) {
-                // Verifica si el ID del producto es diferente de 49, 50 y 51
-                if (producto.id !== 33 && producto.id !== 48 && producto.id !== 49 && producto.id !== 50 && producto.id !== 51 && producto.id !== 52 && producto.id !== 53 && producto.id !== 54) {
-                    // Verifica si el producto tiene una imagen
-                    if (producto.linkImagen) {
-                        // Agrega el nombre, la descripción y la imagen de cada producto al div #producto
-                        $("#producto").append(`
-                            <div style="text-align: center;">
-                                <h1>${producto.nombre}</h1>
-                                <p>${producto.descripcion}</p>
-                                <img src="${producto.linkImagen}" alt="${producto.nombre}" style="width: 200px; height: auto;">
+<body>
+    <script>
+        $(document).ready(function() {
+            const settings = {
+                async: true,
+                crossDomain: true,
+                url: 'https://pizzaallapala.p.rapidapi.com/productos',
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'fd0b3bbe2emsh027ad7af237662ap1c097bjsn7a3f9c7a936d',
+                    'X-RapidAPI-Host': 'pizzaallapala.p.rapidapi.com'
+                }
+            };
+
+            $.ajax(settings).done(function(response) {
+            console.log(response.productos);
+
+            const productContainer = $('#productContainer');
+
+            // Iterar sobre los productos y crear una tarjeta para cada uno, excepto los productos con IDs 1, 2 y 3
+            $.each(response.productos, function(index, producto) {
+                // Excluir productos por su ID
+                if (producto.id !== 33 && producto.id !== 48 && producto.id !== 49 && producto.id !== 50 && producto.id !== 51 && producto.id !== 52 && producto.id !== 53 && producto.id !== 54 && producto.id !== 44 && producto.id !== 46) {
+                    // Crear una nueva tarjeta para el producto
+                    const card = $('<div class="col-md-4 mb-3"></div>');
+                    card.append(`
+                        <div class="card">
+                            <!-- Si el producto no tiene imagen, se puede mostrar una imagen predeterminada o dejarlo en blanco -->
+                            <img src="${producto.linkImagen || 'imagen_predeterminada.jpg'}" class="card-img-top" alt="${producto.nombre}">
+                            <div class="card-body">
+                                <h5 class="card-title">${producto.nombre}</h5>
+                                <p class="card-text">${producto.descripcion}</p>
+                                <a href="#" class="btn btn-primary">Detalles</a>
                             </div>
-                        `);
-                    }
+                        </div>
+                    `);
+
+                    // Agregar la tarjeta al contenedor de productos
+                    productContainer.append(card);
                 }
             });
-        } else {
-            // Si no se encuentra la lista de productos en la respuesta
-            $("#producto").append("<p style='text-align: center;'>No se pudieron obtener los productos.</p>");
-        }
+        });
     });
     </script>
-    <div id="producto" style="text-align: center;"></div>
-    
+<div id="productContainer" class="row"></div>
+
+
+
 </body>
 </html>
