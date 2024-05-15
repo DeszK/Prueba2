@@ -31,10 +31,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="btn">Inicio <span class="sr-only">(current)</span></a>
+              <a class="btn" href="index.html">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="btn" href="#">Consulta el Clima</a>
+              <a class="btn" href="formulario.html">formulario<span class="sr-only">(current)</span></a><!-- Hay que cambiar el nombre despues -->
             </li>
             <li class="nav-item">
               <a class="btn" href="#">Nuestros servicios</a>
@@ -55,27 +55,28 @@
                 
                 <label>Nombre:</label> 
                 <input type="text" id="itNombre" class="campo"/> <br />
-                <div id="mensaje1" class="errores">Por favor, escribe tu nombre</div>
+                <div id="mensaje1"></div>
 
 
                 <label>Apellido:</label>
                 <input type="text" id="itApellido" class="campo"/> <br />
-                <div id="mensaje2" class="errores">Por favor, escribe tu apellido</div>
+                <div id="mensaje2"></div>
 
 
                 <label>Celular:</label>
                 <input type="text" id="itCelular" class="campo"/> <br />
-                <div id="mensaje3" class="errores">Por favor, ingresa tu número de celular</div>
+                <div id="mensaje3"></div>
 
 
                 <label>Correo Electrónico:</label>
                 <input type="text" id="itEmail" class="campo"/> <br />
-                <div id="mensaje4" class="errores">Por favor, ingresa un correo electrónico válido</div>
+                <div id="mensaje4"></div>
 
 
                 <label>Direccion:</label>
                 <input type="text" id="itDireccion" class="campo"/> <br />
-                <div id="mensaje5" class="errores">Por favor, ingresa tu direccion</div>
+                <div id="mensaje5"></div>
+                
                 <br>
 
                 <button type="submit" id="bEnviar" value="Enviar datos" class="btn btn-primary">Enviar</button>
@@ -87,8 +88,6 @@
     <script>
         
         $(document).ready(function(){
-            // Ocultar los mensajes de error al cargar la página
-            $(".errores").hide();
 
             $("#formulario").submit(function(event){
                 var nombre = $("#itNombre");
@@ -99,6 +98,7 @@
                 var valido = true;
 
                 // Verificar si los campos están vacíos y mostrar mensajes de error
+                // Verificacion del nombre
                 if(nombre.val().trim() === "") {
                     $("#mensaje1").text("Por favor, escribe tu nombre").show();
                     nombre.addClass("error-input");
@@ -107,7 +107,7 @@
                     $("#mensaje1").hide();
                     nombre.removeClass("error-input");
                 }
-
+                // Verificacion del apellido
                 if(apellido.val().trim() === "") {
                     $("#mensaje2").text("Por favor, ingresa tu apellido").show();
                     apellido.addClass("error-input");
@@ -127,15 +127,15 @@
                 }
 
                 if(email.val().trim() === "") {
-                    $("#mensaje3").text("Por favor, ingresa un correo electrónico válido").show();
+                    $("#mensaje4").text("Por favor, ingresa un correo electrónico válido").show();
                     email.addClass("error-input");
                     valido = false;
                 } else if (!email.val().includes('@')) {
-                    $("#mensaje3").text("Por favor, ingresa un correo electrónico válido que contenga al menos un '@'").show();
+                    $("#mensaje4").text("Por favor, ingresa un correo electrónico válido que contenga al menos un '@'").show();
                     email.addClass("error-input");
                     valido = false;
                 } else {
-                    $("#mensaje3").hide();
+                    $("#mensaje4").hide();
                     email.removeClass("error-input");
                 }
 
