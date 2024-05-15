@@ -6,10 +6,21 @@
     <title>Pizzas</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <script>
+        //Crear funcion para actualizar modal
+        function actualizarModal(producto) {
+            $('#detallesModal .modal-title').text(producto.nombre);
+            $('#detallesModal .modal-body').html(`
+                <p>${producto.descripcion}</p>
+                <p>Precio: $${producto.precio}</p>
+            `);
+        }
         $(document).ready(function() {
             const settings = {
                 async: true,
@@ -25,18 +36,18 @@
             $.ajax(settings).done(function(response) {
             console.log(response.productos);
 
-            const productContainer = $('#productContainer');
+            const productContainer = $('#productContainer'); //Crear contenedor de producto
 
-            // Iterar sobre los productos y crear una tarjeta para cada uno, excepto los productos con IDs 1, 2 y 3
+            //Iterar sobre la api
             $.each(response.productos, function(index, producto) {
-                // Excluir productos por su ID
+                //Excluir productos por ID
                 if (producto.id !== 33 && producto.id !== 48 && producto.id !== 49 && producto.id !== 50 && producto.id !== 51 && producto.id !== 52 && producto.id !== 53 && producto.id !== 54 && producto.id !== 44 && producto.id !== 46) {
-                    // Crear una nueva tarjeta para el producto
+                    //Crear Cards
                     const card = $('<div class="col-md-4 mb-3"></div>');
                     card.append(`
                         <div class="card">
                             <!-- Si el producto no tiene imagen, se puede mostrar una imagen predeterminada o dejarlo en blanco -->
-                            <img src="${producto.linkImagen || 'imagen_predeterminada.jpg'}" class="card-img-top" alt="${producto.nombre}">
+                            <img src="${producto.linkImagen || 'imagen_predeterminada.jpg'}" class="card-img-top" alt="">
                             <div class="card-body">
                                 <h5 class="card-title">${producto.nombre}</h5>
                                 <p class="card-text">${producto.descripcion}</p>
@@ -44,15 +55,39 @@
                             </div>
                         </div>
                     `);
+                    card.find('.btn').click(function(event) {
+                    event.preventDefault(); //Evitar que el boton haga cosas raras
+                    actualizarModal(producto); //Usar la funcion y actualizar el modal
+                    $('#detallesModal').modal('show'); //Mostrar el modal
+                });
 
-                    // Agregar la tarjeta al contenedor de productos
-                    productContainer.append(card);
+                    productContainer.append(card); //Agregar la card al contenedor de producto
                 }
             });
         });
     });
-    </script>
+</script>
+    <!-- Div con los productos -->
 <div id="productContainer" class="row"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="detallesModal" tabindex="-1" role="dialog" aria-labelledby="detallesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detallesModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
