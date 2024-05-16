@@ -70,3 +70,7 @@
     font-size: 0.9em;
     color: #555;
 }
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+.fuente {
+    font-family: 'Abril Fatface', cursive;
+}
