@@ -60,8 +60,8 @@ $(document).ready(function(){
             direccion.removeClass("error-input");
         }
 
-         // Si todos los campos están completos y válidos, mostrar el alert de confirmacion
-         if(valido) {
+        // Si todos los campos están completos y válidos, mostrar el alert de confirmacion
+        if(valido) {
             alert("Todos los campos están completos y válidos. ¡Gracias por enviar el formulario!");
         }
 
