@@ -1,3 +1,4 @@
+//Validacion formulario
 $(document).ready(function(){
 
     $("#formulario").submit(function(event){
@@ -27,7 +28,7 @@ $(document).ready(function(){
             $("#mensaje2").hide();
             apellido.removeClass("error-input");
         }
-
+        // Verificacion del celular
         if(celular.val().trim() === "") {
             $("#mensaje3").text("Por favor, ingresa tu número de celular").show();
             celular.addClass("error-input");
@@ -36,7 +37,7 @@ $(document).ready(function(){
             $("#mensaje3").hide();
             celular.removeClass("error-input");
         }
-
+        // Verificacion del correo
         if(email.val().trim() === "") {
             $("#mensaje4").text("Por favor, ingresa un correo electrónico válido").show();
             email.addClass("error-input");
@@ -49,7 +50,7 @@ $(document).ready(function(){
             $("#mensaje4").hide();
             email.removeClass("error-input");
         }
-
+        // Verificacion de la dirección
         if(direccion.val().trim() === "") {
             $("#mensaje5").text("Por favor, ingresa tu dirección").show();
             direccion.addClass("error-input");
@@ -59,7 +60,7 @@ $(document).ready(function(){
             direccion.removeClass("error-input");
         }
 
-         // Si todos los campos están completos y válidos, mostrar el alert
+         // Si todos los campos están completos y válidos, mostrar el alert de confirmacion
          if(valido) {
             alert("Todos los campos están completos y válidos. ¡Gracias por enviar el formulario!");
         }
