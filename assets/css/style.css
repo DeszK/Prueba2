@@ -95,3 +95,17 @@ body{
     margin: 20px;
     margin-right: 250px; /* Añade un margen a la derecha para separar las imágenes */
 }
+.image-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .image-container img {
+    width: 30%; /* Establece el ancho de las imágenes */
+    height: auto; /* Hace que la altura sea proporcional al ancho */
+  }
+
+  .second-image {
+    width: 50%; /* Establece el ancho de la segunda imagen */
+    height: auto; /* Hace que la altura sea proporcional al ancho */
+  }
