@@ -14,7 +14,7 @@
 }
 
 .navbar-toggler-icon{
-    background-color: white; /* Cambia el color de las 3 rayitas a blanco */
+    background-color: white; /* Cambia el color de las 3 rayitas a blanco (se ve como un bloque blanco)*/
 }
 
 .error-input{
@@ -59,7 +59,7 @@
     border-radius: 15px; /* Establece bordes redondeados */
     overflow: hidden; /* Oculta cualquier contenido que sobresalga de los bordes redondeados */
     border: 3px solid rgb(255, 115, 0); /* Establece el color del borde como naranja */
-    margin: 70px;
+    margin: 20px;
 }
 
 .map-title{
@@ -77,6 +77,7 @@
 .fuente {
     font-family: 'Abril Fatface', cursive;
 }
+
 body{
     background-color: #FFFCF6;
 }
@@ -84,3 +85,13 @@ body{
 .navbar-brand img {
     max-width: 30px; /* Pone un ancho máximo para la imagen */
   }
+
+.image-container {
+    display: flex; /* Utiliza flexbox para organizar las imágenes */
+    align-items: center; /* Alinea verticalmente las imágenes */
+}
+  /* Estilos para cada imagen */
+.image-container img {
+    margin: 20px;
+    margin-right: 250px; /* Añade un margen a la derecha para separar las imágenes */
+}
