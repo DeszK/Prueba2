@@ -67,6 +67,7 @@ $(document).ready(function(){
         // Si algún campo está vacío, detener el envío del formulario
         if(!valido) {
             event.preventDefault();
+            alert("Error! Algun campo no está completo o no es válido. (Asegurese de que estén completos o este validado correctamente)");
         }
     });
 });
