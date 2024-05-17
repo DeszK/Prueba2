@@ -87,7 +87,7 @@ body{
   }
 
 .image-container {
-    display: flex; /* Utiliza flexbox para organizar las imágenes */
+    display: flex; /* Sirve para organizar las imagenes */
     align-items: center; /* Alinea verticalmente las imágenes */
 }
   /* Estilos para cada imagen */
