@@ -59,9 +59,15 @@ $(document).ready(function(){
             direccion.removeClass("error-input");
         }
 
-        // Si algún campo está vacío, detener el envío del formulario
+         // Si todos los campos están completos y válidos, mostrar el alert
+         if(valido) {
+            alert("Todos los campos están completos y válidos. ¡Gracias por enviar el formulario!");
+        }
+
+        // Si algún campo está vacío, detener el envío del formulario y mostrar el alert de error
         if(!valido) {
             event.preventDefault();
+            alert("Error! Algun campo no está completo o no es válido. (Asegurese de que estén completos o este validado correctamente)");
         }
     });
 });
