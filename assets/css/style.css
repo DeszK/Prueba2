@@ -98,14 +98,31 @@ body{
 .image-container {
     display: flex;
     justify-content: space-between;
-  }
+}
 
-  .image-container img {
+.image-container img {
     width: 30%; /* Establece el ancho de las imágenes */
     height: auto; /* Hace que la altura sea proporcional al ancho */
-  }
+}
 
-  .second-image {
+.second-image {
     width: 50%; /* Establece el ancho de la segunda imagen */
     height: auto; /* Hace que la altura sea proporcional al ancho */
-  }
+}
+
+/* Estilos para el formulario(página registrarse.html) */
+.container-centered {
+    display: flex; /* Sirve para alinear y distribuir los elementos aumáticamente */
+    text-align: center; /* Centra el texto dentro del contenedor y cualquier otro elemento */
+
+}
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Sirve para cambiar el tipo de letra al título del formulario */
+    text-decoration: underline; /* Sirve para subrayar el título del formulario */
+}
+.container {
+    border: 5px solid rgb(255, 115, 0); /* Coloca un borde alrededor de color naranja */
+    border-radius: 10px; /* Sirve para hacer las esquinas redondeadas */
+    padding: 20px; /* Crea un espacio de relleno alrededor del contenido */ 
+    width: 100%; /* Establece el ancho del elemento */
+}
